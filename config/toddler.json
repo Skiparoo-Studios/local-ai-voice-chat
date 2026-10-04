@@ -1,0 +1,991 @@
+{
+    "childName": null,
+    "childAge": null,
+    "askEveryTurns": 2,
+    "questions": [
+        {
+            "id": "cow-sound",
+            "ask": "What sound does a cow make?",
+            "answers": ["moo", "mooo", "mu"],
+            "correct": ["That's right! A cow says moo."],
+            "incorrect": ["A cow makes a moo sound. Can you say moo?"],
+            "topic": "animals",
+            "difficulty": 1
+        },
+        {
+            "id": "sheep-sound",
+            "ask": "What sound does a sheep make?",
+            "answers": ["baa", "bar", "ba", "maa"],
+            "correct": ["That's correct! A sheep says baa.", "Yes! Baa baa, just like that."],
+            "incorrect": ["A sheep makes a baa sound. Can you say baa?", "Nearly! A sheep says baa."],
+            "topic": "animals",
+            "difficulty": 1
+        },
+        {
+            "id": "duck-sound",
+            "ask": "What sound does a duck make?",
+            "answers": ["quack", "quak", "wack"],
+            "correct": ["Yes! A duck says quack quack."],
+            "incorrect": ["A duck makes a quack sound. Quack quack!"],
+            "topic": "animals",
+            "difficulty": 1
+        },
+        {
+            "id": "dog-sound",
+            "ask": "What does a doggy say?",
+            "answers": ["woof", "wuf", "bark", "ruff"],
+            "correct": ["Good one! A doggy says woof."],
+            "incorrect": ["A doggy says woof woof!"],
+            "topic": "animals",
+            "difficulty": 1
+        },
+        {
+            "id": "cat-sound",
+            "ask": "What sound does a cat make?",
+            "answers": ["meow", "miaow", "miao", "mew"],
+            "correct": ["That's right! A cat says meow."],
+            "incorrect": ["A cat makes a meow sound."],
+            "topic": "animals",
+            "difficulty": 1
+        },
+        {
+            "id": "pig-sound",
+            "ask": "What sound does a pig make?",
+            "answers": ["oink", "oik"],
+            "correct": ["Yes, a pig says oink!"],
+            "incorrect": ["A pig makes an oink sound. Oink oink!"],
+            "topic": "animals",
+            "difficulty": 1
+        },
+        {
+            "id": "lion-sound",
+            "ask": "What sound does a lion make?",
+            "answers": ["roar", "rawr", "raa", "grr"],
+            "correct": ["Yes! A big loud roar."],
+            "incorrect": ["A lion goes roar! Can you do a big roar?"],
+            "topic": "animals",
+            "difficulty": 2
+        },
+        {
+            "id": "says-meow",
+            "ask": "What animal says meow?",
+            "answers": ["cat", "kitty", "kitten", "pussy cat"],
+            "correct": ["That's right, a cat says meow!"],
+            "incorrect": ["It's a cat! Cats say meow."],
+            "topic": "animals",
+            "difficulty": 2
+        },
+        {
+            "id": "bird-fly",
+            "ask": "Can a bird fly?",
+            "answers": ["yes", "yeah", "yep", "yup", "can"],
+            "correct": ["Yes! Birds flap their wings and fly."],
+            "incorrect": ["Birds can fly. They flap their wings!"],
+            "topic": "animals",
+            "difficulty": 2
+        },
+        {
+            "id": "horse-eat",
+            "ask": "What does a horse eat?",
+            "answers": ["grass", "hay", "apple", "apples", "carrot", "carrots", "oats"],
+            "correct": ["Yes! Horses munch on grass and hay."],
+            "incorrect": ["Horses eat grass and hay. Munch munch!"],
+            "topic": "animals",
+            "difficulty": 3
+        },
+        {
+            "id": "fish-live",
+            "ask": "Where does a fish live?",
+            "answers": ["water", "sea", "ocean", "river", "pond", "tank", "lake"],
+            "correct": ["That's right, fish live in the water."],
+            "incorrect": ["Fish live in the water. They swim all day!"],
+            "topic": "animals",
+            "difficulty": 3
+        },
+        {
+            "id": "long-trunk",
+            "ask": "What animal has a long trunk?",
+            "answers": ["elephant", "elefant"],
+            "correct": ["Yes! An elephant has a long trunk."],
+            "incorrect": ["It's an elephant! Elephants have long trunks."],
+            "topic": "animals",
+            "difficulty": 3
+        },
+        {
+            "id": "gives-milk",
+            "ask": "What animal gives us milk?",
+            "answers": ["cow", "cows", "goat"],
+            "correct": ["Yes! Milk comes from cows."],
+            "incorrect": ["It's a cow. Cows give us milk!"],
+            "topic": "animals",
+            "difficulty": 3
+        },
+        {
+            "id": "penguin-fly",
+            "ask": "Can a penguin fly?",
+            "answers": ["no", "nope", "cant", "can not", "cannot", "swim"],
+            "correct": ["That's right! Penguins can't fly, but they can swim."],
+            "incorrect": ["Penguins can't fly. They swim instead!"],
+            "topic": "animals",
+            "difficulty": 4
+        },
+        {
+            "id": "long-neck",
+            "ask": "What animal has a really long neck?",
+            "answers": ["giraffe", "jiraffe", "giraf"],
+            "correct": ["Yes! A giraffe has a very long neck."],
+            "incorrect": ["It's a giraffe! Giraffes have very long necks."],
+            "topic": "animals",
+            "difficulty": 4
+        },
+        {
+            "id": "baby-dog",
+            "ask": "What is a baby dog called?",
+            "answers": ["puppy", "puppies", "pup"],
+            "correct": ["Yes! A baby dog is a puppy."],
+            "incorrect": ["A baby dog is called a puppy!"],
+            "topic": "animals",
+            "difficulty": 4
+        },
+        {
+            "id": "bigger-mouse-elephant",
+            "ask": "Which is bigger, a mouse or an elephant?",
+            "answers": ["elephant", "elefant"],
+            "correct": ["Yes! An elephant is much bigger than a mouse."],
+            "incorrect": ["An elephant is bigger. Elephants are huge!"],
+            "topic": "animals",
+            "difficulty": 5
+        },
+        {
+            "id": "faster-turtle-horse",
+            "ask": "Which is faster, a turtle or a horse?",
+            "answers": ["horse", "hors"],
+            "correct": ["Yes! A horse gallops fast. Turtles are very slow."],
+            "incorrect": ["A horse is faster. Turtles go very slowly!"],
+            "topic": "animals",
+            "difficulty": 5
+        },
+
+        {
+            "id": "grass-colour",
+            "ask": "What colour is the grass?",
+            "answers": ["green"],
+            "correct": ["That's right, the grass is green."],
+            "incorrect": ["The grass is green."],
+            "topic": "colours",
+            "difficulty": 1
+        },
+        {
+            "id": "sky-colour",
+            "ask": "What colour is the sky?",
+            "answers": ["blue"],
+            "correct": ["Well done! The sky is blue."],
+            "incorrect": ["The sky is blue, like the sea."],
+            "topic": "colours",
+            "difficulty": 1
+        },
+        {
+            "id": "banana-colour",
+            "ask": "What colour is a banana?",
+            "answers": ["yellow"],
+            "correct": ["Yes! Bananas are yellow."],
+            "incorrect": ["A banana is yellow."],
+            "topic": "colours",
+            "difficulty": 1
+        },
+        {
+            "id": "strawberry-colour",
+            "ask": "What colour is a strawberry?",
+            "answers": ["red"],
+            "correct": ["Yes! Strawberries are red and yummy."],
+            "incorrect": ["A strawberry is red."],
+            "topic": "colours",
+            "difficulty": 2
+        },
+        {
+            "id": "name-something-red",
+            "ask": "Can you name something that is red?",
+            "answers": [],
+            "correct": ["Good thinking! Lots of things are red."],
+            "incorrect": ["Good thinking! Lots of things are red."],
+            "topic": "colours",
+            "difficulty": 3
+        },
+        {
+            "id": "stop-sign-colour",
+            "ask": "What colour is a stop sign?",
+            "answers": ["red"],
+            "correct": ["Yes! Stop signs are red so we notice them."],
+            "incorrect": ["A stop sign is red. Red means stop!"],
+            "topic": "colours",
+            "difficulty": 3
+        },
+        {
+            "id": "mix-blue-yellow",
+            "ask": "What happens if we mix blue and yellow?",
+            "answers": ["green"],
+            "correct": ["Yes! Blue and yellow make green."],
+            "incorrect": ["They make green! Blue and yellow mixed together."],
+            "topic": "colours",
+            "difficulty": 5
+        },
+
+        {
+            "id": "ball-shape",
+            "ask": "What shape is a ball?",
+            "answers": ["round", "circle", "sphere", "circul"],
+            "correct": ["Yes! A ball is round."],
+            "incorrect": ["A ball is round. It rolls!"],
+            "topic": "shapes",
+            "difficulty": 2
+        },
+        {
+            "id": "wheel-shape",
+            "ask": "What shape is a wheel?",
+            "answers": ["round", "circle", "circul"],
+            "correct": ["Yes! Wheels are round so they can roll."],
+            "incorrect": ["A wheel is round. That's how it rolls along!"],
+            "topic": "shapes",
+            "difficulty": 3
+        },
+        {
+            "id": "triangle-sides",
+            "ask": "How many sides does a triangle have?",
+            "answers": ["3"],
+            "correct": ["Yes! A triangle has three sides."],
+            "incorrect": ["A triangle has three sides. One, two, three!"],
+            "topic": "shapes",
+            "difficulty": 4
+        },
+        {
+            "id": "square-sides",
+            "ask": "How many sides does a square have?",
+            "answers": ["4"],
+            "correct": ["Yes! A square has four sides."],
+            "incorrect": ["A square has four sides. One, two, three, four!"],
+            "topic": "shapes",
+            "difficulty": 4
+        },
+
+        {
+            "id": "count-nose",
+            "ask": "How many noses do you have?",
+            "answers": ["1"],
+            "correct": ["Yes! Just one nose."],
+            "incorrect": ["You have one nose. Just one!"],
+            "topic": "counting",
+            "difficulty": 1
+        },
+        {
+            "id": "count-eyes",
+            "ask": "How many eyes do you have?",
+            "answers": ["2"],
+            "correct": ["Yes! Two eyes for seeing."],
+            "incorrect": ["You have two eyes. One, two!"],
+            "topic": "counting",
+            "difficulty": 1
+        },
+        {
+            "id": "count-fingers",
+            "ask": "How many fingers are on one hand?",
+            "answers": ["5"],
+            "correct": ["Clever! There are five fingers on one hand."],
+            "incorrect": ["There are five. One, two, three, four, five!"],
+            "topic": "counting",
+            "difficulty": 2
+        },
+        {
+            "id": "count-to-five",
+            "ask": "Can you count to five?",
+            "answers": [],
+            "correct": ["Brilliant counting! One, two, three, four, five."],
+            "incorrect": ["Brilliant counting! One, two, three, four, five."],
+            "topic": "counting",
+            "difficulty": 2
+        },
+        {
+            "id": "after-two",
+            "ask": "What comes after two?",
+            "answers": ["3"],
+            "correct": ["Yes! Three comes after two."],
+            "incorrect": ["Three comes next. One, two, three!"],
+            "topic": "counting",
+            "difficulty": 3
+        },
+        {
+            "id": "before-four",
+            "ask": "What comes before four?",
+            "answers": ["3"],
+            "correct": ["Yes! Three comes before four."],
+            "incorrect": ["Three comes before four. Two, three, four!"],
+            "topic": "counting",
+            "difficulty": 3
+        },
+        {
+            "id": "more-two-three",
+            "ask": "Which is more, two or three?",
+            "answers": ["3"],
+            "correct": ["Yes! Three is more than two."],
+            "incorrect": ["Three is more. Three is one bigger than two!"],
+            "topic": "counting",
+            "difficulty": 4
+        },
+        {
+            "id": "add-apples",
+            "ask": "You have two apples and I give you one more. How many apples?",
+            "answers": ["3"],
+            "correct": ["Yes! Two and one more makes three."],
+            "incorrect": ["That makes three apples. Two, and one more!"],
+            "topic": "counting",
+            "difficulty": 5
+        },
+        {
+            "id": "eat-biscuit",
+            "ask": "I have three biscuits and I eat one. How many are left?",
+            "answers": ["2"],
+            "correct": ["Yes! Three take away one leaves two."],
+            "incorrect": ["Two are left. Three biscuits, eat one, two left!"],
+            "topic": "counting",
+            "difficulty": 5
+        },
+
+        {
+            "id": "see-with",
+            "ask": "What do you see with?",
+            "answers": ["eyes", "eye"],
+            "correct": ["Yes! We see with our eyes."],
+            "incorrect": ["We see with our eyes!"],
+            "topic": "body",
+            "difficulty": 1
+        },
+        {
+            "id": "hear-with",
+            "ask": "What do you hear with?",
+            "answers": ["ears", "ear"],
+            "correct": ["Yes! We hear with our ears."],
+            "incorrect": ["We hear with our ears!"],
+            "topic": "body",
+            "difficulty": 1
+        },
+        {
+            "id": "smell-with",
+            "ask": "What do you smell with?",
+            "answers": ["nose"],
+            "correct": ["Yes! We smell with our nose."],
+            "incorrect": ["We smell with our nose. Sniff sniff!"],
+            "topic": "body",
+            "difficulty": 2
+        },
+        {
+            "id": "clap-with",
+            "ask": "What do you use to clap?",
+            "answers": ["hands", "hand"],
+            "correct": ["Yes! We clap with our hands."],
+            "incorrect": ["We clap with our hands. Can you clap?"],
+            "topic": "body",
+            "difficulty": 2
+        },
+        {
+            "id": "walk-with",
+            "ask": "What do you use to walk?",
+            "answers": ["feet", "foot", "legs", "leg"],
+            "correct": ["Yes! We walk on our feet."],
+            "incorrect": ["We walk with our feet and legs!"],
+            "topic": "body",
+            "difficulty": 2
+        },
+        {
+            "id": "touch-your-ears",
+            "ask": "Can you touch your ears?",
+            "answers": [],
+            "correct": ["Well done! There they are, one on each side."],
+            "incorrect": ["Well done! There they are, one on each side."],
+            "topic": "body",
+            "difficulty": 3
+        },
+        {
+            "id": "teeth-for",
+            "ask": "What are teeth for?",
+            "answers": ["eating", "eat", "chewing", "chew", "biting", "bite", "food"],
+            "correct": ["Yes! Teeth are for chewing our food."],
+            "incorrect": ["Teeth are for chewing food. Munch munch!"],
+            "topic": "body",
+            "difficulty": 4
+        },
+        {
+            "id": "when-tired",
+            "ask": "What do you do when you're tired?",
+            "answers": ["sleep", "sleeping", "bed", "nap", "rest", "yawn", "lie down"],
+            "correct": ["Yes! We have a lovely sleep."],
+            "incorrect": ["When we're tired we go to sleep!"],
+            "topic": "body",
+            "difficulty": 4
+        },
+
+        {
+            "id": "fruit-yellow",
+            "ask": "What fruit is yellow?",
+            "answers": ["banana", "bananas", "lemon", "pineapple"],
+            "correct": ["Yes! A banana is yellow."],
+            "incorrect": ["A banana is yellow!"],
+            "topic": "food",
+            "difficulty": 2
+        },
+        {
+            "id": "drink-thirsty",
+            "ask": "What do we drink when we're thirsty?",
+            "answers": ["water", "milk", "juice", "drink"],
+            "correct": ["Yes! Water is the best drink of all."],
+            "incorrect": ["We drink water when we're thirsty!"],
+            "topic": "food",
+            "difficulty": 2
+        },
+        {
+            "id": "milk-from",
+            "ask": "Where does milk come from?",
+            "answers": ["cow", "cows", "goat", "farm"],
+            "correct": ["Yes! Milk comes from cows."],
+            "incorrect": ["Milk comes from cows on the farm!"],
+            "topic": "food",
+            "difficulty": 3
+        },
+        {
+            "id": "chickens-give",
+            "ask": "What do chickens give us?",
+            "answers": ["eggs", "egg"],
+            "correct": ["Yes! Chickens give us eggs."],
+            "incorrect": ["Chickens give us eggs!"],
+            "topic": "food",
+            "difficulty": 3
+        },
+        {
+            "id": "vegetable-orange",
+            "ask": "What vegetable is orange?",
+            "answers": ["carrot", "carrots", "pumpkin"],
+            "correct": ["Yes! Carrots are orange. Rabbits love them."],
+            "incorrect": ["A carrot is orange!"],
+            "topic": "food",
+            "difficulty": 3
+        },
+        {
+            "id": "ice-cream-hot-cold",
+            "ask": "Is ice cream hot or cold?",
+            "answers": ["cold", "cool", "freezing", "frozen"],
+            "correct": ["Yes! Ice cream is lovely and cold."],
+            "incorrect": ["Ice cream is cold. Brrr!"],
+            "topic": "food",
+            "difficulty": 3
+        },
+        {
+            "id": "eat-soup-with",
+            "ask": "What do we use to eat soup?",
+            "answers": ["spoon", "spoons"],
+            "correct": ["Yes! We eat soup with a spoon."],
+            "incorrect": ["We use a spoon for soup!"],
+            "topic": "food",
+            "difficulty": 4
+        },
+        {
+            "id": "apple-fruit-vegetable",
+            "ask": "Is an apple a fruit or a vegetable?",
+            "answers": ["fruit"],
+            "correct": ["Yes! An apple is a fruit."],
+            "incorrect": ["An apple is a fruit!"],
+            "topic": "food",
+            "difficulty": 5
+        },
+        {
+            "id": "sweeter-lemon-lolly",
+            "ask": "Which is sweeter, a lemon or a lolly?",
+            "answers": ["lolly", "lollie", "lollipop", "sweet"],
+            "correct": ["Yes! A lolly is sweet. Lemons are sour."],
+            "incorrect": ["A lolly is sweeter. Lemons make your face go funny!"],
+            "topic": "food",
+            "difficulty": 5
+        },
+
+        {
+            "id": "car-sound",
+            "ask": "What sound does a car make?",
+            "answers": ["beep", "brum", "vroom", "broom", "brmm", "honk"],
+            "correct": ["Yes! Beep beep, brum brum!"],
+            "incorrect": ["A car goes brum brum, beep beep!"],
+            "topic": "vehicles",
+            "difficulty": 1
+        },
+        {
+            "id": "train-sound",
+            "ask": "What sound does a train make?",
+            "answers": ["choo", "chuff", "toot", "woo"],
+            "correct": ["Yes! Choo choo!"],
+            "incorrect": ["A train goes choo choo!"],
+            "topic": "vehicles",
+            "difficulty": 2
+        },
+        {
+            "id": "flies-in-sky",
+            "ask": "What flies in the sky?",
+            "answers": ["plane", "aeroplane", "airplane", "jet", "bird", "birds", "helicopter"],
+            "correct": ["Yes! Aeroplanes and birds fly in the sky."],
+            "incorrect": ["Aeroplanes fly in the sky. So do birds!"],
+            "topic": "vehicles",
+            "difficulty": 2
+        },
+        {
+            "id": "train-tracks",
+            "ask": "What travels on train tracks?",
+            "answers": ["train", "trains"],
+            "correct": ["Yes! Trains run along the tracks."],
+            "incorrect": ["A train travels on the tracks!"],
+            "topic": "vehicles",
+            "difficulty": 3
+        },
+        {
+            "id": "travels-on-water",
+            "ask": "What travels on water?",
+            "answers": ["boat", "boats", "ship", "ships", "ferry", "canoe"],
+            "correct": ["Yes! Boats travel on the water."],
+            "incorrect": ["A boat travels on the water!"],
+            "topic": "vehicles",
+            "difficulty": 3
+        },
+        {
+            "id": "two-wheels",
+            "ask": "What vehicle has two wheels?",
+            "answers": ["bike", "bicycle", "motorbike", "motorcycle", "scooter"],
+            "correct": ["Yes! A bike has two wheels."],
+            "incorrect": ["A bike has two wheels!"],
+            "topic": "vehicles",
+            "difficulty": 4
+        },
+        {
+            "id": "fire-engine",
+            "ask": "What has a siren and puts out fires?",
+            "answers": ["fire engine", "fire truck", "firetruck", "fire", "engine"],
+            "correct": ["Yes! A fire engine, with its loud siren."],
+            "incorrect": ["It's a fire engine! Nee nah, nee nah!"],
+            "topic": "vehicles",
+            "difficulty": 4
+        },
+        {
+            "id": "aeroplane-lands",
+            "ask": "Where does an aeroplane land?",
+            "answers": ["airport", "runway", "ground", "air port"],
+            "correct": ["Yes! Aeroplanes land at the airport."],
+            "incorrect": ["An aeroplane lands at the airport, on a long runway."],
+            "topic": "vehicles",
+            "difficulty": 5
+        },
+        {
+            "id": "red-light",
+            "ask": "What should cars do when the traffic light is red?",
+            "answers": ["stop", "stops", "wait", "waits"],
+            "correct": ["Yes! Red means stop."],
+            "incorrect": ["They stop! Red means stop, green means go."],
+            "topic": "vehicles",
+            "difficulty": 5
+        },
+
+        {
+            "id": "shines-in-day",
+            "ask": "What shines in the sky during the day?",
+            "answers": ["sun", "sunshine"],
+            "correct": ["Yes! The sun shines in the daytime."],
+            "incorrect": ["The sun shines in the day!"],
+            "topic": "nature",
+            "difficulty": 1
+        },
+        {
+            "id": "sky-at-night",
+            "ask": "What do we see in the sky at night?",
+            "answers": ["moon", "stars", "star", "dark"],
+            "correct": ["Yes! The moon and the twinkly stars."],
+            "incorrect": ["We see the moon and the stars at night!"],
+            "topic": "nature",
+            "difficulty": 2
+        },
+        {
+            "id": "falls-from-clouds",
+            "ask": "What falls from the clouds?",
+            "answers": ["rain", "raining", "snow", "water", "hail"],
+            "correct": ["Yes! Rain falls from the clouds."],
+            "incorrect": ["Rain falls from the clouds. Pitter patter!"],
+            "topic": "nature",
+            "difficulty": 2
+        },
+        {
+            "id": "snow-hot-cold",
+            "ask": "Is snow hot or cold?",
+            "answers": ["cold", "freezing", "cool", "icy"],
+            "correct": ["Yes! Snow is very cold."],
+            "incorrect": ["Snow is cold. Brrr, chilly!"],
+            "topic": "nature",
+            "difficulty": 2
+        },
+        {
+            "id": "grows-on-trees",
+            "ask": "What grows on trees?",
+            "answers": ["leaves", "apples", "apple", "fruit", "leaf", "branches", "nuts"],
+            "correct": ["Yes! Leaves and fruit grow on trees."],
+            "incorrect": ["Leaves grow on trees, and apples too!"],
+            "topic": "nature",
+            "difficulty": 3
+        },
+        {
+            "id": "when-it-rains",
+            "ask": "What happens when it rains?",
+            "answers": ["wet", "puddles", "puddle", "water", "splash"],
+            "correct": ["Yes! Everything gets wet and there are puddles."],
+            "incorrect": ["Everything gets wet, and puddles appear for splashing!"],
+            "topic": "nature",
+            "difficulty": 4
+        },
+        {
+            "id": "sun-goes-down",
+            "ask": "What happens when the sun goes down?",
+            "answers": ["dark", "night", "night time", "bed", "sleep"],
+            "correct": ["Yes! It gets dark and night time comes."],
+            "incorrect": ["It gets dark, and then it's night time!"],
+            "topic": "nature",
+            "difficulty": 4
+        },
+        {
+            "id": "plants-need",
+            "ask": "What do plants need to grow?",
+            "answers": ["water", "sun", "sunshine", "rain", "light", "soil", "dirt"],
+            "correct": ["Yes! Plants need water and sunshine."],
+            "incorrect": ["Plants need water and sunshine to grow big!"],
+            "topic": "nature",
+            "difficulty": 5
+        },
+        {
+            "id": "hot-season",
+            "ask": "What season is usually hot?",
+            "answers": ["summer"],
+            "correct": ["Yes! Summer is the hot one."],
+            "incorrect": ["Summer is hot. That's when we go to the beach!"],
+            "topic": "nature",
+            "difficulty": 5
+        },
+
+        {
+            "id": "where-we-sleep",
+            "ask": "Where do we sleep?",
+            "answers": ["bed", "bedroom", "cot"],
+            "correct": ["Yes! We sleep in our cosy bed."],
+            "incorrect": ["We sleep in our bed!"],
+            "topic": "everyday",
+            "difficulty": 1
+        },
+        {
+            "id": "what-we-sit-on",
+            "ask": "What do we sit on?",
+            "answers": ["chair", "chairs", "sofa", "couch", "seat", "stool"],
+            "correct": ["Yes! We sit on a chair."],
+            "incorrect": ["We sit on a chair!"],
+            "topic": "everyday",
+            "difficulty": 1
+        },
+        {
+            "id": "brush-teeth-with",
+            "ask": "What do we use to brush our teeth?",
+            "answers": ["toothbrush", "brush", "tooth brush", "toothpaste"],
+            "correct": ["Yes! A toothbrush, with minty toothpaste."],
+            "incorrect": ["We use a toothbrush and toothpaste!"],
+            "topic": "everyday",
+            "difficulty": 2
+        },
+        {
+            "id": "wear-on-feet",
+            "ask": "What do we wear on our feet?",
+            "answers": ["shoes", "shoe", "socks", "sock", "boots", "slippers", "wellies"],
+            "correct": ["Yes! Shoes and socks go on our feet."],
+            "incorrect": ["We wear shoes and socks on our feet!"],
+            "topic": "everyday",
+            "difficulty": 2
+        },
+        {
+            "id": "wash-hands-with",
+            "ask": "What do we use to wash our hands?",
+            "answers": ["soap", "water", "bubbles"],
+            "correct": ["Yes! Soap and water make lovely bubbles."],
+            "incorrect": ["We use soap and water. Lots of bubbles!"],
+            "topic": "everyday",
+            "difficulty": 3
+        },
+        {
+            "id": "when-raining-take",
+            "ask": "What do we use when it's raining?",
+            "answers": ["umbrella", "brolly", "raincoat", "coat", "wellies", "hood"],
+            "correct": ["Yes! An umbrella keeps us dry."],
+            "incorrect": ["We take an umbrella to keep dry!"],
+            "topic": "everyday",
+            "difficulty": 3
+        },
+        {
+            "id": "food-stays-cold",
+            "ask": "Where does food stay cold?",
+            "answers": ["fridge", "freezer", "refrigerator", "frige"],
+            "correct": ["Yes! Food stays cold in the fridge."],
+            "incorrect": ["Food stays cold in the fridge!"],
+            "topic": "everyday",
+            "difficulty": 4
+        },
+        {
+            "id": "open-a-door",
+            "ask": "What do we use to open a door?",
+            "answers": ["handle", "key", "knob", "door handle", "hands", "hand"],
+            "correct": ["Yes! We turn the handle."],
+            "incorrect": ["We use the handle, or a key if it's locked!"],
+            "topic": "everyday",
+            "difficulty": 4
+        },
+        {
+            "id": "before-eating",
+            "ask": "What should we do before eating?",
+            "answers": ["wash hands", "wash", "washing", "clean hands", "soap", "hands"],
+            "correct": ["Yes! We wash our hands first."],
+            "incorrect": ["We wash our hands before eating. It keeps the germs away!"],
+            "topic": "everyday",
+            "difficulty": 5
+        },
+        {
+            "id": "wear-when-cold",
+            "ask": "What do we wear when it's cold?",
+            "answers": ["coat", "jumper", "jacket", "hat", "scarf", "gloves", "warm"],
+            "correct": ["Yes! A warm coat and a woolly hat."],
+            "incorrect": ["We wear a coat, a hat and a scarf to stay warm!"],
+            "topic": "everyday",
+            "difficulty": 5
+        },
+
+        {
+            "id": "opposite-hot",
+            "ask": "What is the opposite of hot?",
+            "answers": ["cold", "cool", "freezing"],
+            "correct": ["Yes! Hot and cold."],
+            "incorrect": ["The opposite of hot is cold!"],
+            "topic": "opposites",
+            "difficulty": 2
+        },
+        {
+            "id": "opposite-big",
+            "ask": "What is the opposite of big?",
+            "answers": ["small", "little", "tiny", "wee"],
+            "correct": ["Yes! Big and small."],
+            "incorrect": ["The opposite of big is small!"],
+            "topic": "opposites",
+            "difficulty": 2
+        },
+        {
+            "id": "opposite-up",
+            "ask": "What is the opposite of up?",
+            "answers": ["down"],
+            "correct": ["Yes! Up and down."],
+            "incorrect": ["The opposite of up is down!"],
+            "topic": "opposites",
+            "difficulty": 3
+        },
+        {
+            "id": "opposite-fast",
+            "ask": "What is the opposite of fast?",
+            "answers": ["slow", "slowly"],
+            "correct": ["Yes! Fast and slow."],
+            "incorrect": ["The opposite of fast is slow!"],
+            "topic": "opposites",
+            "difficulty": 3
+        },
+        {
+            "id": "opposite-happy",
+            "ask": "What is the opposite of happy?",
+            "answers": ["sad", "unhappy", "grumpy", "upset", "cross"],
+            "correct": ["Yes! Happy and sad."],
+            "incorrect": ["The opposite of happy is sad!"],
+            "topic": "opposites",
+            "difficulty": 4
+        },
+        {
+            "id": "bigger-dog-ant",
+            "ask": "Which is bigger, a dog or an ant?",
+            "answers": ["dog", "doggy"],
+            "correct": ["Yes! A dog is much bigger than a tiny ant."],
+            "incorrect": ["A dog is bigger. Ants are tiny!"],
+            "topic": "opposites",
+            "difficulty": 4
+        },
+        {
+            "id": "taller-tree-flower",
+            "ask": "Which is taller, a tree or a flower?",
+            "answers": ["tree", "trees"],
+            "correct": ["Yes! Trees grow very tall."],
+            "incorrect": ["A tree is taller. Trees grow way up high!"],
+            "topic": "opposites",
+            "difficulty": 4
+        },
+        {
+            "id": "heavier-car-ball",
+            "ask": "Which is heavier, a car or a ball?",
+            "answers": ["car", "cars"],
+            "correct": ["Yes! A car is very heavy."],
+            "incorrect": ["A car is heavier. A ball is light and bouncy!"],
+            "topic": "opposites",
+            "difficulty": 5
+        },
+        {
+            "id": "faster-snail-cheetah",
+            "ask": "Which moves faster, a snail or a cheetah?",
+            "answers": ["cheetah", "cheeta", "cheater"],
+            "correct": ["Yes! A cheetah is the fastest animal of all."],
+            "incorrect": ["A cheetah is faster. Snails are very, very slow!"],
+            "topic": "opposites",
+            "difficulty": 5
+        },
+
+        {
+            "id": "riddle-dog",
+            "ask": "I have four legs, I say woof, and I like going for walks. What am I?",
+            "answers": ["dog", "doggy", "puppy", "dogy"],
+            "correct": ["Yes! I'm a dog. Woof woof!"],
+            "incorrect": ["I'm a dog! Four legs, and I say woof."],
+            "topic": "riddles",
+            "difficulty": 3
+        },
+        {
+            "id": "riddle-banana",
+            "ask": "I am yellow, I am a fruit, and monkeys like to eat me. What am I?",
+            "answers": ["banana", "bananas", "banan"],
+            "correct": ["Yes! I'm a banana."],
+            "incorrect": ["I'm a banana! Yellow, and monkeys love me."],
+            "topic": "riddles",
+            "difficulty": 4
+        },
+        {
+            "id": "riddle-elephant",
+            "ask": "I am very big, I am grey, and I have a trunk. What am I?",
+            "answers": ["elephant", "elefant"],
+            "correct": ["Yes! I'm an elephant."],
+            "incorrect": ["I'm an elephant! Big and grey with a long trunk."],
+            "topic": "riddles",
+            "difficulty": 4
+        },
+        {
+            "id": "riddle-car",
+            "ask": "I have wheels, I drive on roads, and people ride inside me. What am I?",
+            "answers": ["car", "cars", "bus", "van", "truck"],
+            "correct": ["Yes! I'm a car. Brum brum!"],
+            "incorrect": ["I'm a car! Wheels, roads, and people inside."],
+            "topic": "riddles",
+            "difficulty": 5
+        },
+
+        {
+            "id": "if-thirsty",
+            "ask": "If you're thirsty, what should you drink?",
+            "answers": ["water", "milk", "juice", "drink"],
+            "correct": ["Good thinking! Water is the best when you're thirsty."],
+            "incorrect": ["A nice cup of water is best when you're thirsty!"],
+            "topic": "reasoning",
+            "difficulty": 3
+        },
+        {
+            "id": "if-cold",
+            "ask": "If you're cold, what could you put on?",
+            "answers": ["coat", "jumper", "jacket", "hat", "scarf", "gloves", "socks", "blanket"],
+            "correct": ["Good thinking! That will keep you nice and warm."],
+            "incorrect": ["You could put on a warm jumper or a coat!"],
+            "topic": "reasoning",
+            "difficulty": 3
+        },
+        {
+            "id": "if-dirty-hands",
+            "ask": "If your hands are dirty, what should you do?",
+            "answers": ["wash", "wash them", "washing", "soap", "clean", "water"],
+            "correct": ["Good thinking! Wash them with lots of bubbles."],
+            "incorrect": ["You wash them with soap and water!"],
+            "topic": "reasoning",
+            "difficulty": 3
+        },
+        {
+            "id": "if-dark-room",
+            "ask": "If it's dark in your room, what could you turn on?",
+            "answers": ["light", "lights", "lamp", "torch"],
+            "correct": ["Good thinking! Turn on the light."],
+            "incorrect": ["You could turn on the light or a lamp!"],
+            "topic": "reasoning",
+            "difficulty": 4
+        },
+        {
+            "id": "if-raining",
+            "ask": "If it's raining, what could you take outside?",
+            "answers": ["umbrella", "brolly", "coat", "raincoat", "wellies", "hood", "hat"],
+            "correct": ["Good thinking! That will keep you dry."],
+            "incorrect": ["You could take an umbrella to keep dry!"],
+            "topic": "reasoning",
+            "difficulty": 4
+        },
+        {
+            "id": "if-toy-too-high",
+            "ask": "If a toy is too high to reach, what could you do?",
+            "answers": [],
+            "correct": ["Good thinking! Asking a grown-up for help is a great idea."],
+            "incorrect": ["Good thinking! Asking a grown-up for help is a great idea."],
+            "topic": "reasoning",
+            "difficulty": 5
+        },
+        {
+            "id": "if-friend-sad",
+            "ask": "If your friend is sad, what could you do?",
+            "answers": [],
+            "correct": ["What a kind idea. A hug always helps."],
+            "incorrect": ["What a kind idea. A hug always helps."],
+            "topic": "reasoning",
+            "difficulty": 5
+        },
+        {
+            "id": "if-want-a-toy",
+            "ask": "If you want someone else's toy, what could you say?",
+            "answers": [],
+            "correct": ["Lovely manners! Asking nicely and saying please is just right."],
+            "incorrect": ["Lovely manners! Asking nicely and saying please is just right."],
+            "topic": "reasoning",
+            "difficulty": 5
+        },
+
+        {
+            "id": "how-old",
+            "ask": "How old is {name}?",
+            "answers": ["{age}"],
+            "correct": ["That's right, {name} is {age}!"],
+            "incorrect": ["{name} is actually {age}."],
+            "topic": "about-you",
+            "difficulty": 2
+        },
+        {
+            "id": "brushed-teeth",
+            "ask": "Did {name} brush his teeth today?",
+            "answers": ["yes", "yeah", "yep", "yup", "i did", "did"],
+            "correct": ["Good job buddy, that will keep the germs away."],
+            "incorrect": ["Let's go and brush them. It keeps the germs away!"],
+            "topic": "about-you",
+            "difficulty": 1
+        },
+        {
+            "id": "washed-hands",
+            "ask": "Has {name} washed his hands today?",
+            "answers": ["yes", "yeah", "yep", "yup", "i did", "did"],
+            "correct": ["Brilliant! Clean hands keep the germs away."],
+            "incorrect": ["Let's give them a wash with lots of bubbles."],
+            "topic": "about-you",
+            "difficulty": 1
+        },
+        {
+            "id": "favourite-animal",
+            "ask": "What is {name}'s favourite animal?",
+            "answers": [],
+            "correct": ["What a good choice!"],
+            "incorrect": ["What a good choice!"],
+            "topic": "about-you",
+            "difficulty": 3
+        }
+    ]
+}

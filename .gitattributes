@@ -1,0 +1,13 @@
+# The assistant is intended to run on Windows, Linux and Raspberry Pi-class
+# devices, so normalise line endings in the repository.
+* text=auto eol=lf
+
+# Audio and model artefacts are binary if they ever appear.
+*.wav binary
+*.mp3 binary
+*.flac binary
+*.ogg binary
+*.pth binary
+*.onnx binary
+*.bin binary
+*.safetensors binary

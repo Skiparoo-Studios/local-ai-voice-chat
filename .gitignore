@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+
+# Tooling
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# IDE
+.idea/
+.vscode/
+
+# Secrets and local configuration
+.env
+# Every local settings file, however it is named. settings_piper.json and
+# settings_xtts.json are the obvious ones to keep side by side and switch
+# between with --config, and none of them belong in the repository.
+config/settings*.json
+!config/settings.example.json
+
+# Models, voices and generated audio must never enter source control
+models/*
+!models/.gitkeep
+voices/*
+!voices/.gitkeep
+outputs/
+*.wav
+# Test fixtures are the exception: the transcription test needs a known
+# utterance to compare against, and it must survive a fresh clone.
+!tests/data/*.wav
+!tests/data/*.txt
+*.mp3
+*.flac
+*.ogg
+*.pth
+*.onnx
+*.bin
+*.safetensors

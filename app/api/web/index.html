@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Assistant</title>
+<style>
+/* One file, no build step, no framework. The brief asks for simple modules
+   over premature frameworks, and that applies to the client too. */
+:root {
+    --bg: #f6f6f4;
+    --panel: #ffffff;
+    --ink: #1b1b1a;
+    --muted: #6b6b66;
+    --line: #e2e2dd;
+    --accent: #2f6f4e;
+    --accent-ink: #ffffff;
+    --user: #e8ebf0;
+    --warn: #9a3412;
+    --radius: 12px;
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #16171a;
+        --panel: #1e2024;
+        --ink: #e8e8e6;
+        --muted: #9a9a94;
+        --line: #2e3137;
+        --accent: #4c9c74;
+        --accent-ink: #0d0f11;
+        --user: #272b31;
+        --warn: #f0a58a;
+    }
+}
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line);
+    background: var(--panel);
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+h1 { font-size: 17px; margin: 0; font-weight: 600; letter-spacing: -0.01em; }
+.state {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13px;
+    color: var(--muted);
+    margin-left: auto;
+}
+.dot {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--muted);
+    transition: background 0.2s;
+}
+.dot[data-state="listening"] { background: #2f7fd1; animation: pulse 1.2s infinite; }
+.dot[data-state="thinking"]  { background: #c98a1a; animation: pulse 1.2s infinite; }
+.dot[data-state="speaking"]  { background: var(--accent); animation: pulse 1.2s infinite; }
+.dot[data-state="offline"]   { background: #b04a3a; }
+@keyframes pulse { 50% { opacity: 0.35; } }
+
+main {
+    flex: 1;
+    width: 100%;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.panel {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 14px;
+}
+.panel h2 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin: 0 0 10px;
+    font-weight: 600;
+}
+#conversation {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 180px;
+    overflow-y: auto;
+}
+.turn { display: flex; }
+.turn.user { justify-content: flex-end; }
+.bubble {
+    max-width: 82%;
+    padding: 9px 13px;
+    border-radius: var(--radius);
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+.turn.user .bubble { background: var(--user); }
+.turn.assistant .bubble { background: var(--accent); color: var(--accent-ink); }
+.turn.note { justify-content: center; }
+.turn.note .bubble {
+    background: none;
+    color: var(--muted);
+    font-size: 13px;
+    padding: 2px;
+    text-align: center;
+}
+.timing { font-size: 12px; color: var(--muted); margin-top: 3px; }
+/* The muted grey vanishes against the accent, so it is lightened here
+   rather than left almost unreadable inside an assistant bubble. */
+.turn.assistant .timing { color: var(--accent-ink); opacity: 0.72; }
+
+.controls { display: flex; gap: 8px; align-items: stretch; }
+input[type="text"], input[type="password"] {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 12px;
+    font: inherit;
+    color: inherit;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+}
+input:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+}
+button {
+    font: inherit;
+    padding: 10px 16px;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background: var(--panel);
+    color: inherit;
+    cursor: pointer;
+}
+button:hover:not(:disabled) { border-color: var(--muted); }
+button:disabled { opacity: 0.45; cursor: not-allowed; }
+button.primary { background: var(--accent); color: var(--accent-ink); border-color: transparent; }
+#talk { min-width: 150px; font-weight: 600; }
+#talk.recording { background: #b04a3a; color: #fff; border-color: transparent; }
+
+.devices { display: flex; flex-wrap: wrap; gap: 7px; }
+.device {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 5px 6px 5px 12px;
+    font-size: 14px;
+}
+.device .name { color: var(--muted); }
+.device button { padding: 3px 10px; font-size: 13px; border-radius: 999px; }
+.device[data-state="on"] .name { color: var(--ink); font-weight: 500; }
+
+#message { color: var(--warn); font-size: 14px; min-height: 21px; }
+.row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.hint { font-size: 13px; color: var(--muted); }
+@media (max-width: 560px) {
+    #talk { min-width: 0; flex: 1; }
+    .controls { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Assistant</h1>
+    <span class="state"><span class="dot" id="dot" data-state="offline"></span><span id="stateLabel">offline</span></span>
+</header>
+
+<main>
+    <section class="panel" id="connectPanel">
+        <h2>Connection</h2>
+        <div class="row">
+            <input type="password" id="token" placeholder="Access token (leave empty if none)" autocomplete="current-password">
+            <button class="primary" id="connect">Connect</button>
+        </div>
+        <p class="hint" id="connectHint">The assistant is on the same address as this page.</p>
+    </section>
+
+    <section class="panel" style="flex:1; display:flex; flex-direction:column;">
+        <h2>Conversation</h2>
+        <div id="conversation"></div>
+    </section>
+
+    <div id="message" role="status" aria-live="polite"></div>
+
+    <section class="panel">
+        <div class="controls">
+            <button id="talk" disabled>Hold to talk</button>
+            <input type="text" id="text" placeholder="or type a message" disabled>
+            <button id="send" disabled>Send</button>
+        </div>
+        <p class="hint">Hold the button, or press and hold the space bar.</p>
+    </section>
+
+    <section class="panel" id="devicePanel" hidden>
+        <h2>Devices</h2>
+        <div class="devices" id="devices"></div>
+    </section>
+</main>
+
+<script>
+"use strict";
+
+// The assistant expects 16 kHz mono PCM, and browsers will resample to
+// whatever rate the AudioContext is created with, so the conversion is free.
+const CAPTURE_RATE = 16000;
+
+const elements = {
+    dot: document.getElementById("dot"),
+    stateLabel: document.getElementById("stateLabel"),
+    token: document.getElementById("token"),
+    connect: document.getElementById("connect"),
+    connectHint: document.getElementById("connectHint"),
+    conversation: document.getElementById("conversation"),
+    message: document.getElementById("message"),
+    talk: document.getElementById("talk"),
+    text: document.getElementById("text"),
+    send: document.getElementById("send"),
+    devicePanel: document.getElementById("devicePanel"),
+    devices: document.getElementById("devices"),
+};
+
+const session = {
+    socket: null,
+    token: "",
+    recording: false,
+    capture: null,
+    chunks: [],
+    reply: null,
+    replyChunks: [],
+    playback: null,
+    startedAt: 0,
+};
+
+// --- Presentation --------------------------------------------------------
+
+function setState(state) {
+    elements.dot.dataset.state = state;
+    elements.stateLabel.textContent = state;
+}
+
+function say(message, isError) {
+    elements.message.textContent = message || "";
+    elements.message.style.color = isError ? "var(--warn)" : "var(--muted)";
+}
+
+function addTurn(role, text, timing) {
+    const turn = document.createElement("div");
+    turn.className = `turn ${role}`;
+
+    const bubble = document.createElement("div");
+    bubble.className = "bubble";
+    bubble.textContent = text;
+
+    if (timing) {
+        const note = document.createElement("div");
+        note.className = "timing";
+        note.textContent = timing;
+        bubble.appendChild(note);
+    }
+
+    turn.appendChild(bubble);
+    elements.conversation.appendChild(turn);
+    elements.conversation.scrollTop = elements.conversation.scrollHeight;
+    return bubble;
+}
+
+function setConnected(connected) {
+    elements.talk.disabled = !connected;
+    elements.text.disabled = !connected;
+    elements.send.disabled = !connected;
+    elements.connect.textContent = connected ? "Disconnect" : "Connect";
+    if (!connected) setState("offline");
+}
+
+// --- Connection ----------------------------------------------------------
+
+function socketUrl() {
+    const scheme = location.protocol === "https:" ? "wss:" : "ws:";
+    const base = `${scheme}//${location.host}/ws/assistant`;
+    // Browsers cannot set headers on a WebSocket handshake, so the token goes
+    // in the query string. The server accepts it there for this reason.
+    return session.token ? `${base}?token=${encodeURIComponent(session.token)}` : base;
+}
+
+function connect() {
+    if (session.socket) {
+        session.socket.close();
+        return;
+    }
+
+    session.token = elements.token.value.trim();
+    say("Connecting…");
+
+    const socket = new WebSocket(socketUrl());
+    socket.binaryType = "arraybuffer";
+    session.socket = socket;
+
+    socket.onopen = () => {
+        say("");
+        setConnected(true);
+        loadDevices();
+    };
+
+    socket.onmessage = (event) => {
+        if (event.data instanceof ArrayBuffer) {
+            session.replyChunks.push(new Uint8Array(event.data));
+        } else {
+            handleMessage(JSON.parse(event.data));
+        }
+    };
+
+    socket.onclose = (event) => {
+        session.socket = null;
+        setConnected(false);
+        stopRecording();
+        if (event.code === 1008) {
+            say("The assistant rejected that token.", true);
+        } else if (event.code !== 1000) {
+            say("The connection closed. Check the assistant is running.", true);
+        }
+    };
+
+    socket.onerror = () => say("Could not reach the assistant.", true);
+}
+
+function handleMessage(payload) {
+    switch (payload.type) {
+        case "assistant.connected":
+            addTurn("note", `Connected — session ${payload.sessionId}`);
+            setState(payload.state || "idle");
+            break;
+        case "assistant.state":
+            setState(payload.state);
+            break;
+        case "assistant.transcription":
+            if (payload.text) addTurn("user", payload.text);
+            break;
+        case "assistant.response":
+            addTurn("assistant", payload.text, describeTiming());
+            loadDevices();
+            break;
+        case "audio.reply":
+            session.reply = payload;
+            session.replyChunks = [];
+            break;
+        case "audio.replyEnd":
+            playReply();
+            break;
+        case "assistant.error":
+            say(payload.message, true);
+            break;
+    }
+}
+
+function describeTiming() {
+    if (!session.startedAt) return "";
+    const seconds = (performance.now() - session.startedAt) / 1000;
+    session.startedAt = 0;
+    return `${seconds.toFixed(2)}s`;
+}
+
+// --- Speaking to it ------------------------------------------------------
+
+async function startRecording() {
+    if (session.recording || !session.socket) return;
+
+    let stream;
+    try {
+        stream = await navigator.mediaDevices.getUserMedia({
+            audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true },
+        });
+    } catch (error) {
+        say("The microphone was refused. Allow access and try again.", true);
+        return;
+    }
+
+    const context = new AudioContext({ sampleRate: CAPTURE_RATE });
+    // An AudioWorklet runs on the audio thread, so capture does not stutter
+    // when the page is busy. It is defined inline to avoid a second file.
+    const workletSource = `
+        class Capture extends AudioWorkletProcessor {
+            process(inputs) {
+                const channel = inputs[0][0];
+                if (channel) this.port.postMessage(new Float32Array(channel));
+                return true;
+            }
+        }
+        registerProcessor("capture", Capture);
+    `;
+    const url = URL.createObjectURL(new Blob([workletSource], { type: "text/javascript" }));
+    await context.audioWorklet.addModule(url);
+    URL.revokeObjectURL(url);
+
+    const source = context.createMediaStreamSource(stream);
+    const node = new AudioWorkletNode(context, "capture");
+    node.port.onmessage = (event) => session.chunks.push(toPcm16(event.data));
+    source.connect(node);
+
+    session.capture = { context, stream, node, source };
+    session.chunks = [];
+    session.recording = true;
+    elements.talk.classList.add("recording");
+    elements.talk.textContent = "Listening…";
+    say("");
+}
+
+function stopRecording() {
+    if (!session.recording) return;
+
+    const { context, stream, node, source } = session.capture;
+    node.port.onmessage = null;
+    source.disconnect();
+    node.disconnect();
+    stream.getTracks().forEach((track) => track.stop());
+    context.close();
+
+    session.capture = null;
+    session.recording = false;
+    elements.talk.classList.remove("recording");
+    elements.talk.textContent = "Hold to talk";
+
+    const audio = concatenate(session.chunks);
+    session.chunks = [];
+
+    // Anything this short is a slipped finger, not an utterance.
+    if (audio.byteLength < CAPTURE_RATE * 2 * 0.25) {
+        say("That was too short to hear.");
+        return;
+    }
+
+    sendUtterance(audio);
+}
+
+function sendUtterance(audio) {
+    if (!session.socket) return;
+
+    session.startedAt = performance.now();
+    session.socket.send(JSON.stringify({
+        type: "audio.start",
+        sampleRate: CAPTURE_RATE,
+        channels: 1,
+        includeAudio: true,
+    }));
+    session.socket.send(audio);
+    session.socket.send(JSON.stringify({ type: "audio.end" }));
+}
+
+function toPcm16(samples) {
+    const encoded = new Int16Array(samples.length);
+    for (let index = 0; index < samples.length; index += 1) {
+        // Clip rather than wrap: wrapping turns a loud sample into noise.
+        const value = Math.max(-1, Math.min(1, samples[index]));
+        encoded[index] = Math.round(value * 32767);
+    }
+    return encoded;
+}
+
+function concatenate(chunks) {
+    const total = chunks.reduce((sum, chunk) => sum + chunk.length, 0);
+    const joined = new Int16Array(total);
+    let offset = 0;
+    for (const chunk of chunks) {
+        joined.set(chunk, offset);
+        offset += chunk.length;
+    }
+    return joined.buffer;
+}
+
+// --- Hearing it ----------------------------------------------------------
+
+function playReply() {
+    const header = session.reply;
+    const chunks = session.replyChunks;
+    session.reply = null;
+    session.replyChunks = [];
+
+    if (!header || !chunks.length) return;
+
+    const total = chunks.reduce((sum, chunk) => sum + chunk.length, 0);
+    const bytes = new Uint8Array(total);
+    let offset = 0;
+    for (const chunk of chunks) {
+        bytes.set(chunk, offset);
+        offset += chunk.length;
+    }
+
+    const samples = new Int16Array(bytes.buffer, 0, Math.floor(bytes.length / 2));
+    const floats = new Float32Array(samples.length);
+    for (let index = 0; index < samples.length; index += 1) {
+        floats[index] = samples[index] / 32768;
+    }
+
+    if (!session.playback) session.playback = new AudioContext();
+    const context = session.playback;
+    // The buffer declares the assistant's rate; the context resamples it.
+    const buffer = context.createBuffer(1, floats.length, header.sampleRate || 24000);
+    buffer.copyToChannel(floats, 0);
+
+    const source = context.createBufferSource();
+    source.buffer = buffer;
+    source.connect(context.destination);
+    source.start();
+}
+
+// --- Typing to it --------------------------------------------------------
+
+function sendText() {
+    const text = elements.text.value.trim();
+    if (!text || !session.socket) return;
+
+    addTurn("user", text);
+    session.startedAt = performance.now();
+    session.socket.send(JSON.stringify({ type: "assistant.message", text }));
+    elements.text.value = "";
+}
+
+// --- Devices -------------------------------------------------------------
+
+function headers() {
+    return session.token ? { Authorization: `Bearer ${session.token}` } : {};
+}
+
+async function loadDevices() {
+    try {
+        const response = await fetch("/automation/devices", { headers: headers() });
+        if (!response.ok) {
+            elements.devicePanel.hidden = true;
+            return;
+        }
+        renderDevices(await response.json());
+    } catch {
+        elements.devicePanel.hidden = true;
+    }
+}
+
+function renderDevices(devices) {
+    const controllable = devices.filter((device) =>
+        ["light", "switch", "fan"].includes(device.domain)
+    );
+    elements.devicePanel.hidden = controllable.length === 0;
+    elements.devices.replaceChildren();
+
+    for (const device of controllable) {
+        const chip = document.createElement("div");
+        chip.className = "device";
+        chip.dataset.state = device.state || "";
+
+        const name = document.createElement("span");
+        name.className = "name";
+        // The server decides how a device is named; duplicating that rule
+        // here is how "Hallway Hallway light" happens.
+        name.textContent = device.describedName || device.name;
+        chip.appendChild(name);
+
+        const toggle = document.createElement("button");
+        const on = device.state === "on";
+        // Naming the action, not the state: a button reading "On" beside a
+        // device that is off is ambiguous about which it means.
+        toggle.textContent = on ? "Turn off" : "Turn on";
+        toggle.setAttribute("aria-label", `${name.textContent}: ${toggle.textContent}`);
+        toggle.onclick = () => execute(
+            `${device.domain}.${on ? "turnOff" : "turnOn"}`, device.deviceId
+        );
+        chip.appendChild(toggle);
+
+        elements.devices.appendChild(chip);
+    }
+}
+
+async function execute(action, target) {
+    try {
+        const response = await fetch("/automation/execute", {
+            method: "POST",
+            headers: { ...headers(), "Content-Type": "application/json" },
+            body: JSON.stringify({ action, target }),
+        });
+        const body = await response.json();
+        if (!response.ok) {
+            say(body.detail || "That was refused.", true);
+            return;
+        }
+        say(body.message);
+        loadDevices();
+    } catch {
+        say("Could not reach the assistant.", true);
+    }
+}
+
+// --- Wiring --------------------------------------------------------------
+
+elements.connect.onclick = connect;
+elements.send.onclick = sendText;
+elements.text.onkeydown = (event) => { if (event.key === "Enter") sendText(); };
+
+elements.talk.onpointerdown = (event) => { event.preventDefault(); startRecording(); };
+elements.talk.onpointerup = stopRecording;
+elements.talk.onpointercancel = stopRecording;
+elements.talk.onpointerleave = () => { if (session.recording) stopRecording(); };
+
+// Space bar as push-to-talk, unless the caret is in the text box.
+document.addEventListener("keydown", (event) => {
+    if (event.code !== "Space" || event.repeat) return;
+    if (document.activeElement === elements.text) return;
+    event.preventDefault();
+    startRecording();
+});
+document.addEventListener("keyup", (event) => {
+    if (event.code !== "Space") return;
+    if (document.activeElement === elements.text) return;
+    stopRecording();
+});
+
+(async function initialise() {
+    try {
+        const response = await fetch("/health");
+        const body = await response.json();
+        elements.connectHint.textContent =
+            `Assistant version ${body.version} at ${location.host}.`;
+    } catch {
+        elements.connectHint.textContent = "The assistant did not answer at this address.";
+    }
+
+    if (!navigator.mediaDevices || !window.AudioWorkletNode) {
+        say("This browser cannot capture audio; typing still works.", true);
+        elements.talk.hidden = true;
+    }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+{
+    "assistant": {
+        "name": "Assistant",
+        "handler": "rules",
+        "useLlmForTools": true,
+        "maxHistoryTurns": 20,
+        "systemPrompt": "",
+        "streaming": true,
+        "warmUpOnStart": true
+    },
+    "logLevel": "INFO",
+    "speechToText": {
+        "provider": "faster-whisper",
+        "model": "small",
+        "device": "auto",
+        "computeType": "auto",
+        "language": "en",
+        "beamSize": 5,
+        "vadFilter": true,
+        "maximumRecordingSeconds": 30.0
+    },
+    "textToSpeech": {
+        "provider": "xtts",
+        "model": "tts_models/multilingual/multi-dataset/xtts_v2",
+        "voice": "default",
+        "language": "en",
+        "device": "auto",
+        "useEmbeddingCache": true,
+        "streamChunkSize": 10
+    },
+    "llm": {
+        "provider": "ollama",
+        "model": "",
+        "baseUrl": "http://localhost:11434",
+        "temperature": 0.7,
+        "maxTokens": null,
+        "timeoutSeconds": 120.0,
+        "keepAlive": "30m"
+    },
+    "toddler": {
+        "enabled": false,
+        "questionsFile": "config/toddler.json",
+        "allowModePhrases": true,
+        "askForName": true,
+        "promptAfterSeconds": 7.0,
+        "giveUpAfterPrompts": 3
+    },
+    "automation": {
+        "provider": "home-assistant",
+        "baseUrl": "http://homeassistant.local:8123",
+        "timeoutSeconds": 15.0,
+        "allowedActions": [
+            "light.turnOn",
+            "light.turnOff",
+            "light.toggle",
+            "switch.turnOn",
+            "switch.turnOff",
+            "switch.toggle",
+            "fan.turnOn",
+            "fan.turnOff"
+        ],
+        "allowStateChanges": true
+    },
+    "audio": {
+        "inputDevice": null,
+        "outputDevice": null,
+        "sampleRate": 16000,
+        "outputBackend": "sounddevice",
+        "echoGuardSeconds": 0.4,
+        "captureStallSeconds": 5.0
+    },
+    "vad": {
+        "provider": "silero",
+        "threshold": 0.5,
+        "startFrames": 2,
+        "silenceFrames": 25,
+        "prerollFrames": 10,
+        "maximumSeconds": 15.0,
+        "minimumSeconds": 0.3
+    },
+    "wakeWord": {
+        "provider": "openwakeword",
+        "word": "hey_jarvis",
+        "threshold": 0.5,
+        "refractorySeconds": 2.0,
+        "allowBargeIn": true,
+        "acknowledge": false
+    },
+    "api": {
+        "host": "127.0.0.1",
+        "port": 8000
+    },
+    "client": {
+        "serverUrl": "http://127.0.0.1:8000"
+    },
+    "paths": {
+        "voices": "voices",
+        "models": "models",
+        "outputs": "outputs"
+    },
+    "books": {
+        "enabled": true,
+        "audioDirectory": "books/audio",
+        "textDirectory": "books/text",
+        "blockSeconds": 5.0,
+        "bookmarksFile": "outputs/bookmarks.json",
+        "volume": 1.0
+    },
+    "sentry": {
+        "enabled": true,
+        "dormant": false,
+        "greetOnWaking": true
+    }
+}
